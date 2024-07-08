@@ -124,3 +124,20 @@ export const options = [
     enabled: false,
   },
 ];
+
+{
+  /* <span className="bg-slate-500">
+              <label className="flex items-center" htmlFor={item.extension}>
+                {item.extension}
+              </label>
+            </span>
+            <span>
+              <input
+                type="checkbox"
+                name={item.extension}
+                checked={item.enabled}
+                onChange={(e) => handleCheckboxChange(item, e)}
+                className=""
+              />
+            </span> */
+}
