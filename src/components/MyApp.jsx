@@ -1,3 +1,5 @@
+import { Label } from "@mui/icons-material";
+import { Button, FormControlLabel, Switch } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 const options = [
@@ -144,32 +146,38 @@ function MyForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("submtted");
     // Process the selected items (checkedItems) here
     // console.log("Selected items:", checkedItems);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
-      {items.map((item) => (
-        <div key={item.id} className="flex flex-row bg-slate-500">
-          <span className="bg-slate-500">
-            <label className="flex items-center">{item.extension}</label>
-          </span>
-          <span>
-            <input
-              type="checkbox"
-              name={item.extension}
-              checked={item.enabled}
-              onChange={(e) => handleCheckboxChange(item, e)}
-              className=""
-            />
-          </span>
-        </div>
-      ))}
-      <button className="" type="submit">
-        Post
-      </button>
-    </form>
+    <div className="flex items-center justify-center border border-blue-500 w-2/3">
+      <form onSubmit={handleSubmit} className="flex gap-2">
+        {items.map((item) => (
+          <div key={item.id} className="flex flex-row bg-slate-500">
+            <span className="bg-slate-500">
+              <label className="flex items-center" htmlFor={item.extension}>
+                {item.extension}
+              </label>
+            </span>
+            <span>
+              <input
+                type="checkbox"
+                name={item.extension}
+                checked={item.enabled}
+                onChange={(e) => handleCheckboxChange(item, e)}
+                className=""
+              />
+            </span>
+            {/* <FormControlLabel control={<Switch Label={item.extension} />} /> */}
+          </div>
+        ))}
+        <Button className="" type="submit" variant="outlined">
+          Post
+        </Button>
+      </form>
+    </div>
   );
 }
 

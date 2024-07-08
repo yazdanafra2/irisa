@@ -1,13 +1,12 @@
-import MyForm from "./components/MyApp"
-
-
+import MyForm from "./components/MyApp";
 
 const App = () => {
   return (
     <>
-    <MyForm></MyForm>
+      {/* <MuiTest></MuiTest> */}
+      <MyForm />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
