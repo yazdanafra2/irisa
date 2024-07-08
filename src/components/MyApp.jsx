@@ -138,9 +138,9 @@ function MyForm() {
 
   const handleCheckboxChange = (item) => (event) => {
     const { checked, name } = event.target;
-    const updatedItem = { ...item, enabled: true };
-    setItems(items.map((i) => (i === item ? updatedItem : item)));
-    //hamro filter mikonim, baad ooni ;e mikhaym avaz konimo add mikonim
+    const updatedItem = { ...item, enabled: checked };
+    setItems(items.map((i) => (i == item ? updatedItem : item)));
+    //hamro filter mikonim, baad ooni ke mikhaym avaz konimo add mikonim
     console.log(item);
   };
 
