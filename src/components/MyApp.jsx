@@ -142,40 +142,6 @@ function MyForm() {
     console.log(item);
   };
 
-  // const handleCheckboxChange = (option) => (event) => {
-  //   const { checked } = event.target;
-
-  //   setItems((items) => {
-  //     if (!Array.isArray(items)) {
-  //       return []; // Handle non-array case (optional)
-  //     }
-  //     const updatedItems = [...items]; // Copy the original array
-  //     const foundIndex = updatedItems.findIndex(
-  //       (item) => item.extension === option.extension
-  //     );
-
-  //     if (foundIndex !== -1) {
-  //       const updatedOption = {
-  //         ...updatedItems[foundIndex],
-  //         enabled: !true,
-  //       }; // Create a new object
-  //       updatedItems[foundIndex] = updatedOption; // Replace the old object at the index
-  //     }
-
-  //     return updatedItems;
-  //   });
-
-  //   // Update checkedItems state for UI (optional)
-  //   setCheckedItems((prevItems) => {
-  //     if (checked) {
-  //       return [...prevItems, option];
-  //     } else {
-  //       return prevItems.filter((item) => item.extension !== option.extension);
-  //     }
-  //   });
-  //   console.log(option.extension + option.enabled);
-  // };
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
