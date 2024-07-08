@@ -138,7 +138,9 @@ function MyForm() {
 
   const handleCheckboxChange = (item) => (event) => {
     const { checked, name } = event.target;
-    setItems((items.filter((i) => i.extension == name).enabled = true));
+    setItems(
+      (items.filter((i) => i.extension !== name), { ...item, enabled: false })
+    );
     //hamro filter mikonim, baad ooni ;e mikhaym avaz konimo add mikonim
   };
 
