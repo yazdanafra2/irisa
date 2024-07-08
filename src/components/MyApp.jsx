@@ -144,25 +144,8 @@ function MyForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     // Process the selected items (checkedItems) here
     // console.log("Selected items:", checkedItems);
-
-    // Example: Send data to a server using fetch or axios
-    // fetch('/api/submit-data', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ selectedItems }),
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   console.log('Server response:', data);
-    //   // Handle successful submission (e.g., clear form, display success message)
-    // })
-    // .catch(error => {
-    //   console.error('Error submitting data:', error);
-    //   // Handle submission error
-    // });
   };
 
   return (
