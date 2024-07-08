@@ -127,7 +127,7 @@ const options = [
   },
 ];
 function MyForm() {
-  const [checkedItems, setCheckedItems] = useState([]);
+  // const [checkedItems, setCheckedItems] = useState([]);
   const [items, setItems] = useState(options);
 
   // useEffect(() => {
@@ -146,7 +146,7 @@ function MyForm() {
     event.preventDefault();
 
     // Process the selected items (checkedItems) here
-    console.log("Selected items:", checkedItems);
+    // console.log("Selected items:", checkedItems);
 
     // Example: Send data to a server using fetch or axios
     // fetch('/api/submit-data', {
