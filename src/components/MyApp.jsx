@@ -165,23 +165,27 @@ function MyForm() {
     // });
   };
 
-  //const options = items
-
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+    <form onSubmit={handleSubmit} className="flex gap-2">
       {items.map((item) => (
-        <div key={item.id} className="flex flex-row">
-          <label className="flex items-center">{item.extension}</label>
-          <input
-            type="checkbox"
-            name={item.extension}
-            checked={item.enabled} // Set checked state
-            onChange={(e) => handleCheckboxChange(item, e)}
-            className="mr-2"
-          />
+        <div key={item.id} className="flex flex-row bg-slate-500">
+          <span className="bg-slate-500">
+            <label className="flex items-center">{item.extension}</label>
+          </span>
+          <span>
+            <input
+              type="checkbox"
+              name={item.extension}
+              checked={item.enabled}
+              onChange={(e) => handleCheckboxChange(item, e)}
+              className=""
+            />
+          </span>
         </div>
       ))}
-      <button type="submit">Post</button>
+      <button className="" type="submit">
+        Post
+      </button>
     </form>
   );
 }
