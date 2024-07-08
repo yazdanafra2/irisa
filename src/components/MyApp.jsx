@@ -1,25 +1,31 @@
-import { Label } from "@mui/icons-material";
 import {
-  Box,
   Button,
   FormControl,
   FormControlLabel,
   FormGroup,
   Grid,
+  InputLabel,
+  MenuItem,
   Paper,
+  Select,
   Switch,
+  Tooltip,
 } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { options } from "./testObject";
+import { Description } from "@mui/icons-material";
 
 function MyForm() {
-  // const [checkedItems, setCheckedItems] = useState([]);
+  const [firewall, setFirewall] = useState({
+    option: "وایت لیست",
+    description: "این",
+  });
   const [items, setItems] = useState(options);
 
   // useEffect(() => {
   //   axios.get("#").then((res) => {
-  //     setItems(res);
+  //     setItems(res.json());
   //   });
   // }, []);
 
@@ -29,39 +35,78 @@ function MyForm() {
     console.log(item);
   };
 
+  const handleMenuChange = (event) => {
+    const { value } = event.target;
+    setFirewall(value);
+    console.log(firewall);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("submtted");
+    axios
+      .post("#", { items, firewall })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
-    <>
-      <Grid container>
-        <FormGroup onSubmit={handleSubmit}>
+    <div dir="rtl">
+      <Paper>
+        <Grid container alignItems="center" width={1 / 4}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">گزینه فایروال</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={firewall}
+              label="Firewall Option"
+              onChange={(e) => handleMenuChange(e)}
+            >
+              <Tooltip title={firewall.description} arrow>
+                <MenuItem value={"وایت لیست"}>وایت لیست</MenuItem>
+              </Tooltip>
+              <Tooltip title={firewall.description} arrow>
+                <MenuItem value={"بلک لیست"}>بلک لیست</MenuItem>
+              </Tooltip>
+            </Select>
+          </FormControl>
+        </Grid>
+      </Paper>
+      <Paper elevation={4}>
+        <Grid container alignItems="center" justifyContent="space-between">
+          {/* <FormControl direction="row">
+              <FormGroup className="row"> */}
           {items.map((item) => (
-            <div key={item.id}>
-              <Grid item>
-                <Paper>
-                  <FormControlLabel
-                    label={item.extension}
-                    control={
-                      <Switch
-                        checked={item.enabled}
-                        onChange={(e) => handleCheckboxChange(item, e)}
-                      />
-                    }
+            <Grid item xs={3} key={item.id}>
+              <FormControlLabel
+                label={item.extension}
+                control={
+                  <Switch
+                    checked={item.enabled}
+                    onChange={(e) => handleCheckboxChange(item, e)}
+                    classes={{
+                      root: { display: "flex", direction: "row" },
+                    }}
                   />
-                </Paper>
-              </Grid>
-            </div>
+                }
+              />
+            </Grid>
           ))}
 
-          <Button className="" type="submit" variant="outlined">
+          {/* </FormGroup>
+            </FormControl> */}
+        </Grid>
+        <Grid item alignItems="center" justifyContent="center">
+          <Button type="submit" variant="outlined" onClick={handleSubmit}>
             Post
           </Button>
-        </FormGroup>
-      </Grid>
-    </>
+        </Grid>
+      </Paper>
+    </div>
   );
 }
 
