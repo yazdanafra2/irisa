@@ -136,10 +136,9 @@ function MyForm() {
   //   });
   // }, []);
 
-  const handleCheckboxChange = (item) => (event) => {
-    const { checked, name } = event.target;
-    const updatedItem = { ...item, enabled: checked };
-    setItems(items.map((i) => (i == item ? updatedItem : item)));
+  const handleCheckboxChange = (item, event) => {
+    const { checked } = event.target;
+    setItems(items.map((i) => (i == item ? { ...item, enabled: checked } : i)));
     //hamro filter mikonim, baad ooni ke mikhaym avaz konimo add mikonim
     console.log(item);
   };
