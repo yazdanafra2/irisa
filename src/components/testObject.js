@@ -125,19 +125,14 @@ export const options = [
   },
 ];
 
-{
-  /* <span className="bg-slate-500">
-              <label className="flex items-center" htmlFor={item.extension}>
-                {item.extension}
-              </label>
-            </span>
-            <span>
-              <input
-                type="checkbox"
-                name={item.extension}
-                checked={item.enabled}
-                onChange={(e) => handleCheckboxChange(item, e)}
-                className=""
-              />
-            </span> */
-}
+export let firewalls = [
+  {
+    value: "whitelist",
+    description: "فقط فرمت‌های انتخاب شده‌ی زیر قابل ارسال هستند",
+  },
+  {
+    option: "blacklist",
+    description:
+      "همه‌ی فرمت‌ها قابل ارسال هستند به جز فرمت‌های انتخاب شده‌ی زیر",
+  },
+];
