@@ -76,9 +76,22 @@ function MyForm() {
   };
 
   const handleSubmit = (event) => {
+    postData(event);
+  };
+
+  const postData = (event) => {
     event.preventDefault();
     axios
-      .post("#", { items, firewall })
+      .post("formats_api", items)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    axios
+      .post("firewalls_api", firewall)
       .then(function (response) {
         console.log(response);
       })
