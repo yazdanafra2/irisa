@@ -34,6 +34,8 @@ function MyForm() {
   const [items, setItems] = useState(options);
   const [isLoading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [addedItem, setAddedItem] = useState({});
+
   let flag1 = false;
   let flag2 = false;
 
@@ -120,7 +122,6 @@ function MyForm() {
   const handleSubmitModal = (e) => {
     e.preventDefault();
     console.log(e.value);
-    handleModalClose();
   };
 
   if (isLoading) {
@@ -184,14 +185,17 @@ function MyForm() {
                 alignItems="center"
                 justifyItems="center"
               >
-                <Button sx={{ color: "gray" }} onClick={handleModalOpen}>
+                <Button
+                  sx={{ color: "gray" }}
+                  onClick={() => handleModalOpen()}
+                >
                   <AddIcon sx={{ color: "gray", opacity: "90%" }} />
                   <p>افزودن فرمت</p>
                 </Button>
                 <ModalForm
                   open={modalOpen}
                   handleClose={() => handleModalClose()}
-                  handleSubmit={handleSubmitModal}
+                  handleSubmit={() => handleSubmitModal([])}
                 ></ModalForm>
               </Box>
             </Grid>

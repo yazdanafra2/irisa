@@ -1,10 +1,17 @@
 import { Button, TextField } from "@mui/material";
+import { useState } from "react";
 
-const Form = (handleSubmit, handleClose) => {
+// eslint-disable-next-line react/prop-types
+const Form = ({ handleSubmit, handleClose }) => {
+  const [extention, setExtention] = useState("");
+  const [mimeType, setMimeType] = useState([]);
+
   return (
     <>
       <form
-        onSubmit={() => handleSubmit()}
+        onSubmit={([extention, mimeType]) => {
+          handleSubmit([extention, mimeType]);
+        }}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -16,11 +23,19 @@ const Form = (handleSubmit, handleClose) => {
         <TextField
           label="extention"
           variant="filled"
-          onChange={handleSubmit}
+          value={extention}
+          onChange={(e) => {
+            setExtention(e.target.value);
+          }}
           required
         />
         <div>
-          <Button variant="contained" type="submit" sx={{ margin: "2rem" }}>
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{ margin: "2rem" }}
+            onClick={(e) => handleSubmit(e)}
+          >
             ثبت
           </Button>
           <Button
