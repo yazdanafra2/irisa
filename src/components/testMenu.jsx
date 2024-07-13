@@ -5,30 +5,30 @@ import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 function AddDynamicInputFields({ handleSubmit, handleClose }) {
-  const [inputs, setInputs] = useState({ extention: "", mimeTypes: [""] });
+  const [input, setInput] = useState({ extention: "", mimeTypes: [""] });
 
   const handleAddMimeType = () => {
-    setInputs({
-      ...inputs,
-      mimeTypes: [...inputs.mimeTypes, ""],
+    setInput({
+      ...input,
+      mimeTypes: [...input.mimeTypes, ""],
     });
   };
 
   const handleChange = (event, index) => {
     let { name, value } = event.target;
     if (name === "extention") {
-      setInputs({ ...inputs, extention: value });
+      setInput({ ...input, extention: value });
     } else {
-      let newMimeTypes = [...inputs.mimeTypes];
+      let newMimeTypes = [...input.mimeTypes];
       newMimeTypes[index] = value;
-      setInputs({ ...inputs, mimeTypes: newMimeTypes });
+      setInput({ ...input, mimeTypes: newMimeTypes });
     }
   };
 
   const handleDeleteMimeType = (index) => {
-    let newMimeTypes = [...inputs.mimeTypes];
+    let newMimeTypes = [...input.mimeTypes];
     newMimeTypes.splice(index, 1);
-    setInputs({ ...inputs, mimeTypes: newMimeTypes });
+    setInput({ ...input, mimeTypes: newMimeTypes });
   };
 
   return (
@@ -46,12 +46,12 @@ function AddDynamicInputFields({ handleSubmit, handleClose }) {
             name="extention"
             label="Extension"
             variant="outlined"
-            value={inputs.extention}
+            value={input.extention}
             onChange={(event) => handleChange(event)}
           />
         </Grid>
 
-        {inputs.mimeTypes.map((mimeType, index) => (
+        {input.mimeTypes.map((mimeType, index) => (
           <Grid
             container
             item
@@ -71,12 +71,12 @@ function AddDynamicInputFields({ handleSubmit, handleClose }) {
             </Grid>
 
             <Grid item sx={{ display: "flex", gap: "0.5rem" }}>
-              {index === inputs.mimeTypes.length - 1 && (
+              {index === input.mimeTypes.length - 1 && (
                 <Button onClick={handleAddMimeType} variant="contained">
                   <AddIcon />
                 </Button>
               )}
-              {inputs.mimeTypes.length > 1 && (
+              {input.mimeTypes.length > 1 && (
                 <Button
                   variant="outlined"
                   onClick={() => handleDeleteMimeType(index)}
@@ -93,7 +93,7 @@ function AddDynamicInputFields({ handleSubmit, handleClose }) {
           justifyContent="center"
           sx={{ mt: "2rem", gap: "2rem" }}
         >
-          <Button variant="contained" onClick={() => handleSubmit(inputs)}>
+          <Button variant="contained" onClick={() => handleSubmit(input)}>
             ثبت
           </Button>
           <Button variant="contained" onClick={handleClose}>
