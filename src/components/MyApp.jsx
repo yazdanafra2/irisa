@@ -133,7 +133,7 @@ function MyForm() {
   };
 
   if (isLoading) {
-    return <FireWallMenuSkeleton></FireWallMenuSkeleton>;
+    return <FireWallMenuSkeleton />;
   } else {
     return (
       <div dir="rtl">
