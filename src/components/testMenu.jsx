@@ -5,23 +5,30 @@ import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 function AddDynamicInputFields({ handleSubmit, handleClose }) {
-  const [inputs, setInputs] = useState([{ extention: "", mimeType: "" }]);
+  const [inputs, setInputs] = useState({ extention: "", mimeTypes: [""] });
 
-  const handleAddInput = () => {
-    setInputs([...inputs, { extention: "", mimeType: "" }]);
+  const handleAddMimeType = () => {
+    setInputs({
+      ...inputs,
+      mimeTypes: [...inputs.mimeTypes, ""],
+    });
   };
 
   const handleChange = (event, index) => {
     let { name, value } = event.target;
-    let onChangeValue = [...inputs];
-    onChangeValue[index][name] = value;
-    setInputs(onChangeValue);
+    if (name === "extention") {
+      setInputs({ ...inputs, extention: value });
+    } else {
+      let newMimeTypes = [...inputs.mimeTypes];
+      newMimeTypes[index] = value;
+      setInputs({ ...inputs, mimeTypes: newMimeTypes });
+    }
   };
 
-  const handleDeleteInput = (index) => {
-    const newArray = [...inputs];
-    newArray.splice(index, 1);
-    setInputs(newArray);
+  const handleDeleteMimeType = (index) => {
+    let newMimeTypes = [...inputs.mimeTypes];
+    newMimeTypes.splice(index, 1);
+    setInputs({ ...inputs, mimeTypes: newMimeTypes });
   };
 
   return (
@@ -31,58 +38,48 @@ function AddDynamicInputFields({ handleSubmit, handleClose }) {
         direction="column"
         alignItems="center"
         justifyContent="center"
-        sx={{ gap: "16px", justifyContent: "center", p: "30px" }}
+        sx={{ gap: "16px", p: "30px" }}
       >
-        {inputs.map((item, index) => (
+        <Grid item sx={{ width: "100%", maxWidth: "500px" }}>
+          <TextField
+            fullWidth
+            name="extention"
+            label="Extension"
+            variant="outlined"
+            value={inputs.extention}
+            onChange={(event) => handleChange(event)}
+          />
+        </Grid>
+
+        {inputs.mimeTypes.map((mimeType, index) => (
           <Grid
             container
             item
             key={index}
-            justifyContent="center"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: "1rem",
-            }}
+            alignItems="center"
+            sx={{ gap: "16px", width: "100%", maxWidth: "500px" }}
           >
-            <Grid
-              item
-              sx={{ display: "flex", flexDirection: "row", gap: "16px" }}
-            >
+            <Grid item sx={{ flexGrow: 1 }}>
               <TextField
-                name="extention"
-                label="Extention"
-                variant="outlined"
-                value={item.extention}
-                onChange={(event) => handleChange(event, index)}
-              />
-              <TextField
+                fullWidth
                 name="mimeType"
-                label="Mime Type"
+                label={`Mime Type ${index + 1}`}
                 variant="outlined"
-                value={item.mimeType}
+                value={mimeType}
                 onChange={(event) => handleChange(event, index)}
               />
             </Grid>
 
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                gap: "0.5rem",
-                justifyContent: "flex-end",
-              }}
-            >
-              {index === inputs.length - 1 && (
-                <Button onClick={() => handleAddInput()} variant="contained">
+            <Grid item sx={{ display: "flex", gap: "0.5rem" }}>
+              {index === inputs.mimeTypes.length - 1 && (
+                <Button onClick={handleAddMimeType} variant="contained">
                   <AddIcon />
                 </Button>
               )}
-              {inputs.length > 1 && (
+              {inputs.mimeTypes.length > 1 && (
                 <Button
                   variant="outlined"
-                  onClick={() => handleDeleteInput(index)}
+                  onClick={() => handleDeleteMimeType(index)}
                 >
                   <DeleteIcon />
                 </Button>
@@ -91,23 +88,18 @@ function AddDynamicInputFields({ handleSubmit, handleClose }) {
           </Grid>
         ))}
 
-        {/* <div className="body"> {JSON.stringify(inputs)} </div> */}
-        <div>
-          <Button
-            variant="contained"
-            sx={{ margin: "2rem" }}
-            onClick={() => handleSubmit(inputs)}
-          >
+        <Grid
+          container
+          justifyContent="center"
+          sx={{ mt: "2rem", gap: "2rem" }}
+        >
+          <Button variant="contained" onClick={() => handleSubmit(inputs)}>
             ثبت
           </Button>
-          <Button
-            variant="contained"
-            sx={{ margin: "2rem" }}
-            onClick={handleClose}
-          >
+          <Button variant="contained" onClick={handleClose}>
             لغو
           </Button>
-        </div>
+        </Grid>
       </Grid>
     </form>
   );
