@@ -28,7 +28,6 @@ const Form = ({ handleSubmit, handleClose }) => {
   ];
 
   const [extention, setExtention] = useState("");
-  const [mimeType, setMimeType] = useState([]);
   const [selectedNames, setSelectedNames] = useState([]);
 
   return (

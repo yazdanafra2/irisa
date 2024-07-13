@@ -41,6 +41,9 @@ function AddDynamicInputFields({ handleSubmit, handleClose }) {
         sx={{ gap: "16px", p: "30px" }}
       >
         <Grid item sx={{ width: "100%", maxWidth: "500px" }}>
+          <p style={{ color: "gray", fontSize: "1rem" }}>
+            .فرمت مورد نظر را وارد کنید (مثال: jpg)
+          </p>
           <TextField
             fullWidth
             name="extention"
@@ -49,8 +52,19 @@ function AddDynamicInputFields({ handleSubmit, handleClose }) {
             value={input.extention}
             onChange={(event) => handleChange(event)}
           />
+          <p
+            style={{
+              color: "gray",
+              fontSize: "1rem",
+            }}
+          >
+            نوع داده‌ای فایل را وارد کنید. (مثال: image/jpeg) برای اطلاعات بیشتر
+            به راهنمای زیر مراجعه کنید
+          </p>
+          <a href="https://mimetype.io/all-types" target="_blank">
+            راهنما
+          </a>
         </Grid>
-
         {input.mimeTypes.map((mimeType, index) => (
           <Grid
             container

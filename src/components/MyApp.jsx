@@ -34,7 +34,6 @@ function MyForm() {
   const [items, setItems] = useState(options);
   const [isLoading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [addedItem, setAddedItem] = useState({});
 
   let flag1 = false;
   let flag2 = false;
@@ -119,8 +118,18 @@ function MyForm() {
     setModalOpen(false);
   };
 
-  const handleSubmitModal = (inputs) => {
-    console.log(inputs);
+  const handleSubmitModal = (input) => {
+    console.log(input);
+    const newItem = {
+      id: items.length + 1,
+      extension: input.extention,
+      mimetypes: input.mimeTypes,
+      enabled: true,
+    };
+    setItems([...items, newItem]);
+    console.log(items);
+    console.log(input);
+    handleModalClose();
   };
 
   if (isLoading) {
