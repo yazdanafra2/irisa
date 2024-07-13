@@ -119,9 +119,8 @@ function MyForm() {
     setModalOpen(false);
   };
 
-  const handleSubmitModal = (e) => {
-    e.preventDefault();
-    console.log(e.value);
+  const handleSubmitModal = (inputs) => {
+    console.log(inputs);
   };
 
   if (isLoading) {
@@ -195,7 +194,7 @@ function MyForm() {
                 <ModalForm
                   open={modalOpen}
                   handleClose={() => handleModalClose()}
-                  handleSubmit={() => handleSubmitModal([])}
+                  handleSubmit={handleSubmitModal}
                 ></ModalForm>
               </Box>
             </Grid>

@@ -8,6 +8,9 @@ const FireWallMenuSkeleton = () => {
       <Box mt={2}>
         <Skeleton variant="rounded" width={Fullscreen} height={270} />
       </Box>
+      <Box mt={2}>
+        <Skeleton variant="rounded" width={Fullscreen} height={270} />
+      </Box>
     </div>
   );
 };

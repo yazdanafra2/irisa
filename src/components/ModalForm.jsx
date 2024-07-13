@@ -1,12 +1,16 @@
 import { Dialog } from "@mui/material";
-import Form from "./Form";
+import AddDynamicInputFields from "./testMenu";
 
 // eslint-disable-next-line react/prop-types
 const ModalForm = ({ open, handleClose, handleSubmit }) => {
   return (
     <>
-      <Dialog open={open}>
-        <Form handleSubmit={handleSubmit} handleClose={handleClose}></Form>
+      <Dialog open={open} fullWidth="xl" maxWidth="md">
+        {/* <Form handleSubmit={handleSubmit} handleClose={handleClose}></Form> */}
+        <AddDynamicInputFields
+          handleSubmit={(e) => handleSubmit(e)}
+          handleClose={handleClose}
+        ></AddDynamicInputFields>
       </Dialog>
     </>
   );
