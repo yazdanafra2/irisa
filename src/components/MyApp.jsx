@@ -48,21 +48,21 @@ function MyForm() {
       .get("formats_api")
       .then((res) => {
         setItems(Array.from(Object.values(res)));
-        flag1 = true;
+        flag1 = false;
       })
       .catch((err) => {
         console.log(err);
-        flag1 = true;
+        flag1 = false;
       });
     axios
       .get("firewall_api")
       .then((res) => {
         firewalls = Array.from(Object.values(res));
-        flag2 = true;
+        flag2 = false;
       })
       .catch((err) => {
         console.log(err);
-        flag2 = true;
+        flag2 = false;
       });
     setLoading(flag1 && flag2);
   };
