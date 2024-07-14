@@ -71,6 +71,7 @@ function AddDynamicInputFields({ handleSubmit, handleClose }) {
             item
             key={index}
             alignItems="center"
+            // flexDirection="column"
             sx={{ gap: "16px", width: "100%", maxWidth: "500px" }}
           >
             <Grid item sx={{ flexGrow: 1 }}>
@@ -85,17 +86,19 @@ function AddDynamicInputFields({ handleSubmit, handleClose }) {
             </Grid>
 
             <Grid item sx={{ display: "flex", gap: "0.5rem" }}>
-              {index === input.mimeTypes.length - 1 && (
-                <Button onClick={handleAddMimeType} variant="contained">
-                  <AddIcon />
-                </Button>
-              )}
               {input.mimeTypes.length > 1 && (
                 <Button
                   variant="outlined"
                   onClick={() => handleDeleteMimeType(index)}
                 >
                   <DeleteIcon />
+                </Button>
+              )}
+            </Grid>
+            <Grid>
+              {index === input.mimeTypes.length - 1 && (
+                <Button onClick={handleAddMimeType} variant="contained">
+                  <AddIcon />
                 </Button>
               )}
             </Grid>

@@ -5,7 +5,7 @@ import AddDynamicInputFields from "./testMenu";
 const ModalForm = ({ open, handleClose, handleSubmit }) => {
   return (
     <>
-      <Dialog open={open} fullWidth="xl" maxWidth="md">
+      <Dialog open={open} fullWidth="xl" maxWidth="sm">
         {/* <Form handleSubmit={handleSubmit} handleClose={handleClose}></Form> */}
         <AddDynamicInputFields
           handleSubmit={(e) => handleSubmit(e)}

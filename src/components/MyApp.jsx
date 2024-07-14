@@ -13,7 +13,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { options } from "./testObject";
+// import { options } from "./testObject";
 import FireWallMenuSkeleton from "./FireWallMenuSkeleton";
 import ModalForm from "./ModalForm";
 
@@ -31,41 +31,41 @@ function MyForm() {
   ];
 
   const [firewall, setFirewall] = useState(firewalls[0]);
-  const [items, setItems] = useState(options);
+  const [items, setItems] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   let flag1 = false;
   let flag2 = false;
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  // const fetchData = () => {
-  //   setLoading(true);
-  //   axios
-  //     .get("formats_api")
-  //     .then((res) => {
-  //       setItems(Array.from(Object.values(res)));
-  //       flag1 = true;
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       flag1 = true;
-  //     });
-  //   axios
-  //     .get("firewall_api")
-  //     .then((res) => {
-  //       firewalls = Array.from(Object.values(res));
-  //       flag2 = true;
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       flag2 = true;
-  //     });
-  //   setLoading(flag1 && flag2);
-  // };
+  const fetchData = () => {
+    setLoading(true);
+    axios
+      .get("formats_api")
+      .then((res) => {
+        setItems(Array.from(Object.values(res)));
+        flag1 = true;
+      })
+      .catch((err) => {
+        console.log(err);
+        flag1 = true;
+      });
+    axios
+      .get("firewall_api")
+      .then((res) => {
+        firewalls = Array.from(Object.values(res));
+        flag2 = true;
+      })
+      .catch((err) => {
+        console.log(err);
+        flag2 = true;
+      });
+    setLoading(flag1 && flag2);
+  };
 
   const handleCheckboxChange = (item, event) => {
     const { checked } = event.target;
