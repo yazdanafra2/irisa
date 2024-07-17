@@ -47,7 +47,7 @@ function AddDynamicInputFields({ handleSubmit, handleClose }) {
           <TextField
             fullWidth
             name="extention"
-            label="Extension"
+            label="Extention"
             variant="outlined"
             value={input.extention}
             onChange={(event) => handleChange(event)}
@@ -94,13 +94,13 @@ function AddDynamicInputFields({ handleSubmit, handleClose }) {
                   <DeleteIcon />
                 </Button>
               )}
-            </Grid>
-            <Grid>
-              {index === input.mimeTypes.length - 1 && (
-                <Button onClick={handleAddMimeType} variant="contained">
-                  <AddIcon />
-                </Button>
-              )}
+              <Grid>
+                {index === input.mimeTypes.length - 1 && (
+                  <Button onClick={handleAddMimeType} variant="contained">
+                    <AddIcon />
+                  </Button>
+                )}
+              </Grid>
             </Grid>
           </Grid>
         ))}

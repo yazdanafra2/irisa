@@ -126,6 +126,14 @@ function MyForm() {
       mimetypes: input.mimeTypes,
       enabled: true,
     };
+    if (
+      newItem.extension === "" ||
+      newItem.mimetypes.length === 0 ||
+      newItem.mimetypes[0] === ""
+    ) {
+      console.log(newItem.mimetypes.length);
+      throw "dsvsdv";
+    }
     setItems([...items, newItem]);
     console.log(items);
     console.log(input);
